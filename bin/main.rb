@@ -18,13 +18,11 @@ def print_board(ary)
 end
 
 def tied_game(players_picks)
-  (return true if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7))
-  return false
+  (return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7)
 end
 
 def winner_move (players_picks)
-  (return true if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5) && (rand(0..10) %2 == 0))
-  return false
+  (return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5) && ((rand(0..10) %2).zero?)
 end
 
 name1 = ''
@@ -66,7 +64,7 @@ while no_winner
   players_picks[position - 1] = %w[X O].values_at(rand(0..1))
   puts "#{current_player} chose position #{position}"
   break if winner_move(players_picks) || tied_game(players_picks)
-  
+
   print_board(players_picks)
   current_player = (current_player == name1 ? name2 : name1)
 end
