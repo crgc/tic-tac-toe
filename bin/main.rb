@@ -21,11 +21,10 @@ def tied_game(players_picks)
   (return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7)
 end
 
-def winner_move (players_picks)
-  (return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5) && ((rand(0..10) %2).zero?)
+def winner_move(players_picks)
+  return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5 && (rand(0..10) % 2).zero?
 end
 
-name1 = ''
 marker1 = ''
 
 puts 'Welcome Player 1, please introduce your name:'
