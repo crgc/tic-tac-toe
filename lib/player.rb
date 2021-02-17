@@ -1,12 +1,15 @@
 class Player
 
+  attr_reader :name
+  attr_reader :marker
+
   def initialize(name, marker)
     @marker = marker
     @name = name
   end
 
-  def description
-    puts "I'm #{@name} and my marker is #{@marker}!"
+  def to_s
+    @name
   end
 
   def opposite_marker

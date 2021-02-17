@@ -1,6 +1,16 @@
 #!/usr/bin/env ruby
 require './lib/player.rb'
 require './lib/game.rb'
+require './lib/poe.rb'
+
+def show_game_title
+  ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
+  puts ascii_title
+end
+
+def show_welcome_message
+  puts "\n\nWelcome to Tic-Tac-Toe!\n"
+end
 
 def create_player(_alias_, marker = nil)
   player_name = prompt_player_name(_alias_)
@@ -23,13 +33,28 @@ def prompt_player_marker
   end
 end
 
-def show_game_title
-  ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
-  puts ascii_title
+def prompt_position
+  loop do
+    position = gets.chomp.to_i
+    return position if (1..9).include?(position)
+
+    puts 'Please choose a position from 1 to 9'
+  end
 end
 
-def show_welcome_message
-  puts "\n\nWelcome to Tic-Tac-Toe!\n"
+def play(game)
+  puts "\n#{game.current_player}, it's your turn. Make a move!\n"
+
+  loop do
+    position = prompt_position
+    begin
+      game.make_move(position)
+    rescue PositionOccupiedError => poe
+      puts "#{poe.message}. Try a different one this time:"
+    else
+      break
+    end
+  end
 end
 
 def start_game
@@ -39,9 +64,9 @@ def start_game
   game = Game.new(player1, player2)
   game.start
 
+  puts "\nGame is on!\n"
   while game.on
-    puts "\nGame is on!\n"
-    game.on = false
+    play(game)
   end
 
   puts "\nBye!\n"
