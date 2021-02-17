@@ -3,36 +3,28 @@
 players_picks = %w[1 2 3 4 5 6 7 8 9]
 
 def print_board(ary)
-  hor_border = '______'
   ver_border = '|'
   puts ''
   1.upto(ary.size + 1) do |i|
+    print ver_border
+    print ary[i - 1].to_s.gsub('[', '').gsub(']', '').gsub('"', '')
 
+    if (i % 3).zero?
       print ver_border
-      print ary[i - 1].to_s.gsub('[', '').gsub(']', '').gsub('"', '')
-
-    if i % 3 == 0
-      print ver_border; puts ''
+      puts ''
     end
-
   end
   puts ''
 end
 
 def tied_game(players_picks)
-  if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7)
-    return true
-  else
-    return false
-  end
+  (return true if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7))
+  return false
 end
 
 def winner_move (players_picks)
-  if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5) && (rand(0..10) %2 == 0)
-    return true
-  else
-    return false
-  end
+  (return true if ((players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5) && (rand(0..10) %2 == 0))
+  return false
 end
 
 name1 = ''
@@ -74,6 +66,7 @@ while no_winner
   players_picks[position - 1] = %w[X O].values_at(rand(0..1))
   puts "#{current_player} chose position #{position}"
   break if winner_move(players_picks) || tied_game(players_picks)
+  
   print_board(players_picks)
   current_player = (current_player == name1 ? name2 : name1)
 end
