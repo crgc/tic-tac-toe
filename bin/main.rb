@@ -22,7 +22,13 @@ end
 
 def prompt_player_name(player_alias)
   print_line("#{player_alias}, what is your name?")
-  gets.chomp
+
+  loop do
+    player_name = gets.chomp.strip
+    return player_name if player_name.size > 0
+
+    puts 'Please enter a non-empty name:'
+  end
 end
 
 def prompt_player_marker
