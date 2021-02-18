@@ -3,6 +3,15 @@ require_relative "poe.rb"
 
 class Board
 
+  GAME_STATE = {
+    win = 1,
+    draw = 2,
+    ongoing = 3
+  }
+  @winning_combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
+                           [1, 4, 7], [2, 5, 8], [3, 6, 9],
+                           [1, 5, 9], [3, 5, 7]].freeze
+
   def initialize
     @grid = Grid.new
   end
@@ -17,6 +26,18 @@ class Board
     else
       raise PositionOccupiedError.new(position)
     end
+  end
+
+  def check_board(marker)
+    @winning_combinations.each do |item|
+      winner = @grid.grid.all? do |e|
+        coordinates = @grid.coordinates_for_position(e)
+        grid_elem = @grid.grid[coordinates[0]][coordinates[1]]
+        return GAME_STATE[:win] unless grid_elem == marker
+      end
+    end
+
+    @grid.any_positions_available? ? GAME_STATE[:ongoing] : GAME_STATE[:draw]
   end
 
   def print_board
