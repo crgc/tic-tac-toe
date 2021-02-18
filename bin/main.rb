@@ -66,6 +66,7 @@ def start_game
 
   puts "\nGame is on!\n"
   while game.on
+    puts("\n" << game.print_board << "\n")
     play(game)
   end
 
