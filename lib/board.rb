@@ -42,8 +42,8 @@ class Board
     str_board = append_horizontal_border(str_board)
     str_board = append_new_line(str_board)
 
-    @grid.grid.each_with_index do |x, xi|
-      x.each_with_index do |y, yi|
+    @grid.grid.each_with_index do |x, _xi|
+      x.each_with_index do |y, _yi|
         str_board = append_vertical_border(str_board)
         str_board = append_whitespace(str_board)
         str_board << (y.nil? ? ' ' : y.to_s)
