@@ -5,7 +5,12 @@ require './lib/poe.rb'
 require './lib/game_state.rb'
 
 def show_game_title
-  ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
+  ascii_title = "___________.__               ___________                     ___________            "
+  ascii_title << "\r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  "
+  ascii_title << "\r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ "
+  ascii_title << "\\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  "
+  ascii_title << "___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\"
+  ascii_title << "___  >\r\n                   \\/                       \\/     \\/                            \\/ "
   puts ascii_title
 end
 
@@ -51,7 +56,6 @@ end
 
 def play(game)
   print_line("#{game.current_player}, it's your turn. Make a move!")
-
 
   loop do
     position = prompt_position
@@ -99,8 +103,6 @@ def start_game
   print_board(game)
 
   play(game) while game.ongoing?
-
-
 
   print_end_of_game(game)
 end

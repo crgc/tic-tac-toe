@@ -10,7 +10,8 @@ class Board
   end
 
   def make_move(position, marker)
-    raise PositionOccupiedError.new(position,'') unless @grid.position_empty?(position)
+    raise PositionOccupiedError.new(position, '') unless @grid.position_empty?(position)
+
     @grid.fill_position(position, marker)
   end
 
