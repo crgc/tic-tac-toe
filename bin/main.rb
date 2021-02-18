@@ -53,7 +53,7 @@ def play(game)
     rescue PositionOccupiedError => poe
       puts "Oops! #{poe.position} is taken! Try a different one this time:"
     else
-      puts game.print_board
+      print_board(game)
       break
     end
   end
@@ -63,18 +63,11 @@ def print_line(text)
   puts "\n" << text << "\n"
 end
 
-def start_game
-  player1 = create_player('PLAYER 1')
-  player2 = create_player('PLAYER 2', player1.opposite_marker)
+def print_board(game)
+  puts game.print_board
+end
 
-  game = Game.new(player1, player2)
-  game.start
-
-  print_line('Game is on!')
-  while game.is_ongoing
-    play(game)
-  end
-
+def print_end_of_game(game)
   case game.game_state
   when GameState::WIN
     print_line("#{game.current_player} is the winner!")
@@ -85,6 +78,23 @@ def start_game
   end
 
   print_line('Thanks for playing. Goodbye!')
+end
+
+def start_game
+  player1 = create_player('PLAYER 1')
+  player2 = create_player('PLAYER 2', player1.opposite_marker)
+
+  game = Game.new(player1, player2)
+  game.start
+
+  print_line('Game is on!')
+  print_board(game)
+
+  while game.is_ongoing
+    play(game)
+  end
+
+  print_end_of_game(game)
 end
 
 show_game_title

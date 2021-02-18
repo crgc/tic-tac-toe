@@ -19,15 +19,20 @@ class Board
   end
 
   def check_for_winning_combination(marker)
+    winning_combination = false
     @winning_combinations.each do |arr|
       winning_combination = arr.all? do |position|
         grid_elem = @grid.element_at_position(position)
-        return false unless grid_elem == marker
-        true
+        equals_marker = grid_elem == marker
+        break unless equals_marker
+
+        equals_marker
       end
 
       return true if winning_combination
     end
+
+    winning_combination
   end
 
   def is_solved?
