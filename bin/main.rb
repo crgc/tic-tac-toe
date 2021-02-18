@@ -51,7 +51,7 @@ def play(game)
     begin
       game.make_move(position)
     rescue PositionOccupiedError => poe
-      puts "#{poe.message}. Try a different one this time:"
+      puts "Oops! #{poe.position} is taken! Try a different one this time:"
     else
       puts game.print_board
       break
