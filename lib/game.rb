@@ -38,7 +38,7 @@ class Game
   def make_move(position)
     puts "#{current_player} wants to place an #{current_player.marker} at position #{position}"
     @board.make_move(position, @current_player.marker)
-    evaluate_game_state # TODO: get the value from this method and from the state of the game figure out next steps
+    evaluate_game_state
     rotate_current_player
   end
 

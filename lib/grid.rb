@@ -13,7 +13,7 @@ class Grid
   }
 
   def initialize
-    @grid = Array.new(3, Array.new(3, 'X'))
+    @grid = Array.new(3) {Array.new(3) {}}
   end
 
   def grid
@@ -25,10 +25,10 @@ class Grid
   end
 
   def position_is_empty(x, y)
-    @grid[x, y].nil?
+    @grid[x][y].nil?
   end
 
   def mark_position(x, y, marker)
-    @grid[x, y] = marker
+    @grid[x][y] = marker
   end
 end

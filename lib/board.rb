@@ -1,4 +1,5 @@
 require_relative "grid.rb"
+require_relative "poe.rb"
 
 class Board
 
@@ -7,7 +8,15 @@ class Board
   end
 
   def make_move(position, marker)
+    coordinates = @grid.coordinates_for_position(position)
+    x = coordinates[0]
+    y = coordinates[1]
 
+    if @grid.position_is_empty(x, y)
+      @grid.mark_position(x, y, marker)
+    else
+      raise PositionOccupiedError.new(position)
+    end
   end
 
   def print_board
@@ -20,7 +29,7 @@ class Board
       x.each_with_index do |y, yi|
         str_board = append_vertical_border(str_board)
         str_board = append_whitespace(str_board)
-        str_board << y
+        str_board << (y.nil? ? ' ' : y.to_s)
         str_board = append_whitespace(str_board)
       end
 

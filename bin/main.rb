@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require './lib/player.rb'
-require './lib/game.rb'
-require './lib/poe.rb'
+require "./lib/player.rb"
+require "./lib/game.rb"
+require "./lib/poe.rb"
 
 def show_game_title
   ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
@@ -52,6 +52,7 @@ def play(game)
     rescue PositionOccupiedError => poe
       puts "#{poe.message}. Try a different one this time:"
     else
+      puts game.print_board
       break
     end
   end
@@ -66,7 +67,6 @@ def start_game
 
   puts "\nGame is on!\n"
   while game.on
-    puts("\n" << game.print_board << "\n")
     play(game)
   end
 
