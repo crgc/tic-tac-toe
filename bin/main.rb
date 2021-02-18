@@ -70,7 +70,7 @@ def start_game
   game = Game.new(player1, player2)
   game.start
 
-  print_line("Game is on!")
+  print_line('Game is on!')
   while game.is_ongoing
     play(game)
   end
@@ -84,7 +84,7 @@ def start_game
     print_line('Error: This stage should not be reached.')
   end
 
-  print_line("Thanks for playing. Goodbye!")
+  print_line('Thanks for playing. Goodbye!')
 end
 
 show_game_title
