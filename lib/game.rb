@@ -1,10 +1,11 @@
-require_relative "board.rb"
-require_relative "poe.rb"
-require_relative "game_state.rb"
+require_relative 'board.rb'
+require_relative 'poe.rb'
+require_relative 'game_state.rb'
 
 class Game
   attr_reader :current_player
   attr_reader :game_state
+  attr_reader :winner
 
   def initialize(player1, player2)
     @player1 = player1
@@ -17,15 +18,15 @@ class Game
     @game_state = GameState::ONGOING
   end
 
-  def is_ongoing
+  def ongoing?
     @game_state == GameState::ONGOING
   end
 
-  def is_won
+  def won?
     @game_state == GameState::WIN
   end
 
-  def is_draw
+  def draw?
     @game_state == GameState::DRAW
   end
 
@@ -41,19 +42,14 @@ class Game
     if @board.check_for_winning_combination(@current_player.marker)
       @game_state = GameState::WIN
       @winner = @current_player
-    else
-      @game_state = GameState::DRAW if @board.is_solved?
+    elsif @board.solved?
+      @game_state = GameState::DRAW
     end
   end
 
   def make_move(position)
-    puts "#{current_player} wants to place an #{current_player.marker} at position #{position}"
     @board.make_move(position, @current_player.marker)
     evaluate_game_state
-    rotate_current_player if is_ongoing
-  end
-
-  def winner
-    @winner
+    rotate_current_player if ongoing?
   end
 end

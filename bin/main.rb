@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-require "./lib/player.rb"
-require "./lib/game.rb"
-require "./lib/poe.rb"
-require "./lib/game_state.rb"
+require './lib/player.rb'
+require './lib/game.rb'
+require './lib/poe.rb'
+require './lib/game_state.rb'
 
 def show_game_title
   ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
@@ -13,8 +13,8 @@ def show_welcome_message
   print_line("\nWelcome to Tic-Tac-Toe!")
 end
 
-def create_player(_alias_, marker = nil)
-  player_name = prompt_player_name(_alias_)
+def create_player(alias_, marker = nil)
+  player_name = prompt_player_name(alias_)
   player_marker = marker.nil? ? prompt_player_marker : marker
 
   Player.new(player_name, player_marker.to_sym)
@@ -25,7 +25,7 @@ def prompt_player_name(player_alias)
 
   loop do
     player_name = gets.chomp.strip
-    return player_name if player_name.size > 0
+    return player_name if player_name.size.positive?
 
     puts 'Please enter a non-empty name:'
   end
@@ -52,12 +52,14 @@ end
 def play(game)
   print_line("#{game.current_player}, it's your turn. Make a move!")
 
+
   loop do
     position = prompt_position
     begin
+      puts "#{game.current_player} wants to place an #{game.current_player.marker} at position #{position}"
       game.make_move(position)
-    rescue PositionOccupiedError => poe
-      puts "Oops! Position #{poe.position} is taken. Try a different position this time:"
+    rescue PositionOccupiedError => e
+      puts "Oops! Position #{e.position} is taken. Try a different position this time:"
     else
       print_board(game)
       break
@@ -96,9 +98,9 @@ def start_game
   print_line('Game is on!')
   print_board(game)
 
-  while game.is_ongoing
-    play(game)
-  end
+  play(game) while game.ongoing?
+
+
 
   print_end_of_game(game)
 end

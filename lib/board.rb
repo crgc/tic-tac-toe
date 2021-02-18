@@ -1,8 +1,7 @@
-require_relative "grid.rb"
-require_relative "poe.rb"
+require_relative 'grid.rb'
+require_relative 'poe.rb'
 
 class Board
-
   def initialize
     @grid = Grid.new
     @winning_combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
@@ -11,11 +10,8 @@ class Board
   end
 
   def make_move(position, marker)
-    if @grid.is_position_empty?(position)
-      @grid.fill_position(position, marker)
-    else
-      raise PositionOccupiedError.new(position)
-    end
+    raise PositionOccupiedError.new(position,'') unless @grid.position_empty?(position)
+    @grid.fill_position(position, marker)
   end
 
   def check_for_winning_combination(marker)
@@ -35,12 +31,12 @@ class Board
     winning_combination
   end
 
-  def is_solved?
+  def solved?
     !@grid.any_positions_available?
   end
 
   def print_board
-    str_board = ""
+    str_board = ''
     str_board = append_new_line(str_board)
     str_board = append_horizontal_border(str_board)
     str_board = append_new_line(str_board)
@@ -67,14 +63,14 @@ class Board
   end
 
   def append_horizontal_border(str)
-    str << " ——— ——— ———"
+    str << ' ——— ——— ———'
   end
 
   def append_vertical_border(str)
-    str << "|"
+    str << '|'
   end
 
   def append_whitespace(str)
-    str << " "
+    str << ' '
   end
 end

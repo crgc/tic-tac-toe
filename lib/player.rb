@@ -1,5 +1,4 @@
 class Player
-
   attr_reader :name
   attr_reader :marker
 
@@ -13,6 +12,6 @@ class Player
   end
 
   def opposite_marker
-    (@marker == :X) ? :O : :X
+    @marker == :X ? :O : :X
   end
 end
