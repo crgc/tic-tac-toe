@@ -2,6 +2,7 @@
 require "./lib/player.rb"
 require "./lib/game.rb"
 require "./lib/poe.rb"
+require "./lib/game_state.rb"
 
 def show_game_title
   ascii_title = "___________.__               ___________                     ___________            \r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  \r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ \\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  ___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\___  >\r\n                   \\/                       \\/     \\/                            \\/ "
@@ -9,7 +10,7 @@ def show_game_title
 end
 
 def show_welcome_message
-  puts "\n\nWelcome to Tic-Tac-Toe!\n"
+  print_line("\nWelcome to Tic-Tac-Toe!")
 end
 
 def create_player(_alias_, marker = nil)
@@ -20,7 +21,7 @@ def create_player(_alias_, marker = nil)
 end
 
 def prompt_player_name(player_alias)
-  puts "\n#{player_alias}, what is your name?\n"
+  print_line("#{player_alias}, what is your name?")
   gets.chomp
 end
 
@@ -43,7 +44,7 @@ def prompt_position
 end
 
 def play(game)
-  puts "\n#{game.current_player}, it's your turn. Make a move!\n"
+  print_line("#{game.current_player}, it's your turn. Make a move!")
 
   loop do
     position = prompt_position
@@ -58,6 +59,10 @@ def play(game)
   end
 end
 
+def print_line(text)
+  puts "\n" << text << "\n"
+end
+
 def start_game
   player1 = create_player('PLAYER 1')
   player2 = create_player('PLAYER 2', player1.opposite_marker)
@@ -65,12 +70,21 @@ def start_game
   game = Game.new(player1, player2)
   game.start
 
-  puts "\nGame is on!\n"
-  while game.on
+  print_line("Game is on!")
+  while game.is_ongoing
     play(game)
   end
 
-  puts "\nBye!\n"
+  case game.game_state
+  when GameState::WIN
+    print_line("#{game.current_player} is the winner!")
+  when GameState::DRAW
+    print_line("It's a draw!")
+  else
+    print_line('Error: This stage should not be reached.')
+  end
+
+  print_line("Thanks for playing. Goodbye!")
 end
 
 show_game_title

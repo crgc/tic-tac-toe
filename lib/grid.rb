@@ -24,11 +24,25 @@ class Grid
     COORDINATES[position]
   end
 
-  def position_is_empty(x, y)
-    @grid[x][y].nil?
+  def element_at_coordinates(coordinates)
+    @grid[coordinates[0]][coordinates[1]]
   end
 
-  def mark_position(x, y, marker)
-    @grid[x][y] = marker
+  def element_at_position(position)
+    element_at_coordinates(coordinates_for_position(position))
+  end
+
+  def is_position_empty?(position)
+    element_at_coordinates(coordinates_for_position(position)).nil?
+  end
+
+  def any_positions_available?
+    (1..9).each { |position| return true if is_position_empty?(position)}
+    false
+  end
+
+  def fill_position(position, element)
+    coordinates = coordinates_for_position(position)
+    @grid[coordinates[0]][coordinates[1]] = element
   end
 end
