@@ -1,72 +1,112 @@
 #!/usr/bin/env ruby
+require './lib/player.rb'
+require './lib/game.rb'
+require './lib/poe.rb'
+require './lib/game_state.rb'
 
-players_picks = %w[1 2 3 4 5 6 7 8 9]
-
-def print_board(ary)
-  ver_border = '|'
-  puts ''
-  1.upto(ary.size + 1) do |i|
-    print ver_border
-    print ary[i - 1].to_s.gsub('[', '').gsub(']', '').gsub('"', '')
-
-    if (i % 3).zero?
-      print ver_border
-      puts ''
-    end
-  end
-  puts ''
+def show_game_title
+  ascii_title = '___________.__               ___________                     ___________            '
+  ascii_title << "\r\n\\__    ___/|__| ____         \\__    ___/____    ____         \\__    ___/___   ____  "
+  ascii_title << "\r\n  |    |   |  |/ ___\\   ______ |    |  \\__  \\ _/ ___\\   ______ |    | /  _ \\_/ __ "
+  ascii_title << "\\ \r\n  |    |   |  \\  \\___  /_____/ |    |   / __ \\\\  \\___  /_____/ |    |(  <_> )  "
+  ascii_title << "___/ \r\n  |____|   |__|\\___  >         |____|  (____  /\\___  >         |____| \\____/ \\"
+  ascii_title << "___  >\r\n                   \\/                       \\/     \\/                            \\/ "
+  puts ascii_title
 end
 
-def tied_game(players_picks)
-  (return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 7)
+def show_welcome_message
+  print_line("\nWelcome to Tic-Tac-Toe!")
 end
 
-def winner_move(players_picks)
-  return true if (players_picks.count(%w[X]) + players_picks.count(%w[O])) > 5 && (rand(0..10) % 2).zero?
+def create_player(alias_, marker = nil)
+  player_name = prompt_player_name(alias_)
+  player_marker = marker.nil? ? prompt_player_marker : marker
+
+  Player.new(player_name, player_marker.to_sym)
 end
 
-marker1 = ''
-
-puts 'Welcome Player 1, please introduce your name:'
-name1 = gets.chomp
-
-loop do
-  puts 'Please choose your marker: X or O'
-  marker1 = gets.chomp.upcase
-  break if %w[X O].include?(marker1)
-end
-
-puts 'Welcome Player 2, please introduce your name:'
-name2 = gets.chomp
-
-marker2 = (marker1 == 'X' ? 'O' : 'X')
-puts "You will play with #{marker2}"
-
-current_player = name1
-no_winner = true
-
-# initial instructions for player
-
-print_board(players_picks)
-
-while no_winner
-  position = 0
-  puts "#{current_player} it\'s your turn. Choose a position"
+def prompt_player_name(player_alias)
+  print_line("#{player_alias}, what is your name?")
 
   loop do
-    position = gets.chomp.to_i
-    break if (1..9).include?(position) && players_picks.include?(position.to_s)
+    player_name = gets.chomp.strip
+    return player_name if player_name.size.positive?
 
-    puts 'Please choose a position from 1 to 9'
-    puts 'Make sure you choose a free position'
+    puts 'Please enter a non-empty name:'
   end
-  players_picks[position - 1] = %w[X O].values_at(rand(0..1))
-  puts "#{current_player} chose position #{position}"
-  break if winner_move(players_picks) || tied_game(players_picks)
-
-  print_board(players_picks)
-  current_player = (current_player == name1 ? name2 : name1)
 end
 
-players = [name1, name2]
-puts "#{players[rand(0..1)]} won the game!"
+def prompt_player_marker
+  loop do
+    puts "Choose your marker: X or O\n"
+    marker = gets.chomp.upcase
+
+    return marker if %w[X O].include?(marker)
+  end
+end
+
+def prompt_position
+  loop do
+    position = gets.chomp.to_i
+    return position if (1..9).include?(position)
+
+    puts 'Please choose a position from 1 to 9'
+  end
+end
+
+def play(game)
+  print_line("#{game.current_player}, it's your turn. Make a move!")
+
+  loop do
+    position = prompt_position
+    begin
+      puts "#{game.current_player} wants to place an #{game.current_player.marker} at position #{position}"
+      game.make_move(position)
+    rescue PositionOccupiedError => e
+      puts "Oops! Position #{e.position} is taken. Try a different position this time:"
+    else
+      print_board(game)
+      break
+    end
+  end
+end
+
+def print_line(text)
+  puts "\n" << text << "\n"
+end
+
+def print_board(game)
+  puts game.print_board
+end
+
+def print_end_of_game(game)
+  case game.game_state
+  when GameState::WIN
+    print_line("#{game.current_player} is the winner!")
+  when GameState::DRAW
+    print_line("It's a draw!")
+  else
+    print_line('Error: This stage should not be reached.')
+  end
+
+  print_line('Thanks for playing. Goodbye!')
+end
+
+def start_game
+  player1 = create_player('PLAYER 1')
+  player2 = create_player('PLAYER 2', player1.opposite_marker)
+
+  game = Game.new(player1, player2)
+  game.start
+
+  print_line('Game is on!')
+  print_board(game)
+
+  play(game) while game.ongoing?
+
+  print_end_of_game(game)
+end
+
+show_game_title
+show_welcome_message
+start_game
