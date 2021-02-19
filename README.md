@@ -2,7 +2,7 @@
 
 <br />
 <p align="center">
-  <a href="https://github.com/majovainilla/tic-tac-toe-game">
+  <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe">
     <img src="img/screenshot.png" alt="Logo">
   </a>
 
@@ -11,9 +11,9 @@
   <p align="center">
     This project is part of the Microverse Ruby Module.
     <br />
-    <a href="https://github.com/majovainilla/tic-tac-toe-game/issues">Report Bug</a>
+    <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe/issues">Report Bug</a>
     ·
-    <a href="https://github.com/majovainilla/tic-tac-toe-game/issues">Request Feature</a>
+    <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe/issues">Request Feature</a>
   </p>
 </p>
 
