@@ -38,7 +38,7 @@ class Game
     @current_player = @current_player.equal?(@player1) ? @player2 : @player1
   end
 
-  def evaluate_game_state
+  def update_game_state
     if @board.check_for_winning_combination(@current_player.marker)
       @game_state = GameState::WIN
       @winner = @current_player
@@ -49,7 +49,7 @@ class Game
 
   def make_move(position)
     @board.make_move(position, @current_player.marker)
-    evaluate_game_state
+    update_game_state
     rotate_current_player if ongoing?
   end
 end

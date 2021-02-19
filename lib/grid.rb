@@ -29,7 +29,7 @@ class Grid
   end
 
   def position_empty?(position)
-    element_at_coordinates(coordinates_for_position(position)).nil?
+    element_at_position(position).nil?
   end
 
   def any_positions_available?

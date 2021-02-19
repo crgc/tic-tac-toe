@@ -26,7 +26,7 @@ class Board
         equals_marker
       end
 
-      return true if winning_combination
+      break if winning_combination
     end
 
     winning_combination
