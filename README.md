@@ -1,14 +1,25 @@
-# Tic-tac-toe game
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
-This is an exercise to practice OOP in Ruby.
+<br />
+<p align="center">
+  <a href="https://github.com/majovainilla/tic-tac-toe-game">
+    <img src="img/screenshot.png" alt="Logo">
+  </a>
 
-## Built With
+  <h3 align="center">Tic-Tac-Toe Game</h3>
 
-- Ruby
+  <p align="center">
+    This project is part of the Microverse Ruby Module.
+    <br />
+    <a href="https://github.com/majovainilla/tic-tac-toe-game/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/majovainilla/tic-tac-toe-game/issues">Request Feature</a>
+  </p>
+</p>
 
-## Getting Started - Rules
+## About the game
 
-The tic-tac-toe game is a two person game in which the players take turns choosing available positions in a 3×3 grid.
+The tic-tac-toe game is a two person game in which the players, X and O, take turns choosing available positions in a 3×3 grid.
 The player who succeeds in placing three of his marks in a diagonal, horizontal, or vertical row is the winner.
 For example:
 
@@ -43,15 +54,19 @@ The game is written in Ruby, so in order to play it you should:
 * taking this order into account, players will take turns to choose an available position in the board
 * the game can finish with a winner or in a draw
 
+## Built With
+
+- Ruby
+- RubyMine
+
 ## Authors
 
-
-👤  &nbsp; **Carlos González**
+👤  **Carlos González**
 - GitHub: [@chuckbuckethead](https://github.com/chuckbuckethead)
 - Twitter: [@aclerkofpomier](https://twitter.com/aclerkofpomier)
 - LinkedIn: [Carlos González](https://www.linkedin.com/in/chuckbuckethead/)
 
-👤  &nbsp; **Miguel Gómez**
+👤  **Miguel Gómez**
 - GitHub: [@MiguelArgentina](https://github.com/MiguelArgentina)
 - Twitter - [@Qete_arg](https://twitter.com/Qete_arg)
 - LinkedIn: [Miguel Gómez](https://www.linkedin.com/in/miguelricardogomez/)
@@ -68,4 +83,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](https://github.com/chuckbuckethead/microverse-tic-tac-toe/blob/readme_game_instructions/License) licensed.
+This project is [MIT](https://www.mit.edu/~amini/LICENSE.md) licensed.

@@ -15,7 +15,7 @@ def show_game_title
 end
 
 def show_welcome_message
-  print_line("\nWelcome to Tic-Tac-Toe!")
+  print_line("\n\t\t\t\tWelcome to Tic-Tac-Toe!")
 end
 
 def create_player(alias_, marker = nil)
