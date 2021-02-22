@@ -1,4 +1,3 @@
-# spec/player_spec.rb
 require 'rspec'
 require './lib/player.rb'
 
