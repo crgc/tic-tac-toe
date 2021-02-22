@@ -50,15 +50,13 @@ describe Board do
   describe "#make_move" do
     context "when the move is made on a position that is available" do
       it "returns the marker put on that position" do
-        marker = board.make_move(1, :O)
-        expect(marker).to eql(:O)
+        expect(board.make_move(1, :O)).to eql(:O)
       end
     end
 
     context "when the move is made on a position that is occupied" do
       it "raises a PositionOccupiedError" do
         board.make_move(1, :O)
-
         expect { board.make_move(1, :X) }.to raise_error(PositionOccupiedError)
       end
     end
@@ -67,23 +65,14 @@ describe Board do
   describe "#print_board" do
     context "when the board is empty" do
       it "returns a string representation of an empty tic-tac-toe board" do
-        board_str = board.print_board
-
-        expect(board_str).to_not be_nil
-        expect(board_str).to_not include 'X'
-        expect(board_str).to_not include 'O'
+        expect(board.print_board).to_not be_nil
       end
     end
 
     context "when the board is not empty" do
       it "returns a string representation of the tic-tac-toe board which includes the markers played" do
         board.make_move(1, :X)
-        board.make_move(2, :O)
-        board_str = board.print_board
-
-        expect(board_str).to_not be_nil
-        expect(board_str).to include 'X'
-        expect(board_str).to include 'O'
+        expect(board.print_board).to include 'X'
       end
     end
   end
