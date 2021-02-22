@@ -5,7 +5,6 @@ require './lib/poe.rb'
 describe Board do
 
   let(:board) { Board.new }
-  let(:winning_matrix) { [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]] }
 
   describe "#check_for_winning_combinations" do
     context "when the combination is a winning combination" do
