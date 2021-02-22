@@ -41,6 +41,7 @@ class Game
   end
 
   private
+
   def rotate_current_player
     @current_player = @current_player.equal?(@player1) ? @player2 : @player1
   end

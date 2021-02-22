@@ -3,7 +3,6 @@ require './lib/board.rb'
 require './lib/poe.rb'
 
 describe Board do
-
   let(:board) { Board.new }
 
   describe "#check_for_winning_combinations" do

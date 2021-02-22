@@ -35,6 +35,7 @@ class Grid
   end
 
   private
+
   def coordinates_for_position(position)
     COORDINATES[position]
   end
