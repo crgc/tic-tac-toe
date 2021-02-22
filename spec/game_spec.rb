@@ -7,8 +7,8 @@ describe Game do
   let(:player2) { Player.new('Carlos', player1.opposite_marker) }
   let(:game) { Game.new(player1, player2) }
 
-  describe "#start" do
-    it "starts the game" do
+  describe '#start' do
+    it 'starts the game' do
       game.start
 
       expect(game.current_player).to eql(player1)
@@ -16,16 +16,16 @@ describe Game do
     end
   end
 
-  describe "#ongoing?" do
-    it "returns true if the game is ongoing" do
+  describe '#ongoing?' do
+    it 'returns true if the game is ongoing' do
       game.start
 
       expect(game.ongoing?).to be true
     end
   end
 
-  describe "#won?" do
-    it "returns true if the game is won" do
+  describe '#won?' do
+    it 'returns true if the game is won' do
       game.start
       game.make_move(1)
       game.make_move(4)
@@ -37,8 +37,8 @@ describe Game do
     end
   end
 
-  describe "#draw?" do
-    it "returns true if the game is a draw" do
+  describe '#draw?' do
+    it 'returns true if the game is a draw' do
       game.start
       game.make_move(1)
       game.make_move(5)
@@ -54,8 +54,8 @@ describe Game do
     end
   end
 
-  describe "#make_move" do
-    it "makes a move on the board" do
+  describe '#make_move' do
+    it 'makes a move on the board' do
       game.start
       game.make_move(1)
 
