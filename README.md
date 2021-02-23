@@ -54,6 +54,12 @@ The game is written in Ruby, so in order to play it you should:
 * taking this order into account, players will take turns to choose an available position in the board
 * the game can finish with a winner or in a draw
 
+## How to run the test cases
+
+- Open a command line terminal on the project root folder
+- Run `bundle install` to install the gems
+- Run `bundle exec rspec` to run all the test cases
+
 ## Built With
 
 - Ruby
