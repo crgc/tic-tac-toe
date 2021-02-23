@@ -34,6 +34,14 @@ class Game
     @board.print_board
   end
 
+  def make_move(position)
+    @board.make_move(position, @current_player.marker)
+    update_game_state
+    rotate_current_player if ongoing?
+  end
+
+  private
+
   def rotate_current_player
     @current_player = @current_player.equal?(@player1) ? @player2 : @player1
   end
@@ -45,11 +53,5 @@ class Game
     elsif @board.solved?
       @game_state = GameState::DRAW
     end
-  end
-
-  def make_move(position)
-    @board.make_move(position, @current_player.marker)
-    update_game_state
-    rotate_current_player if ongoing?
   end
 end

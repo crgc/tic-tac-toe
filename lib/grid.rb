@@ -16,12 +16,14 @@ class Grid
     @grid = Array.new(3) { Array.new(3) {} }
   end
 
-  def coordinates_for_position(position)
-    COORDINATES[position]
+  def fill_position(position, element)
+    coordinates = coordinates_for_position(position)
+    @grid[coordinates[0]][coordinates[1]] = element
   end
 
-  def element_at_coordinates(coordinates)
-    @grid[coordinates[0]][coordinates[1]]
+  def any_positions_available?
+    (1..9).each { |position| return true if position_empty?(position) }
+    false
   end
 
   def element_at_position(position)
@@ -32,13 +34,13 @@ class Grid
     element_at_position(position).nil?
   end
 
-  def any_positions_available?
-    (1..9).each { |position| return true if position_empty?(position) }
-    false
+  private
+
+  def coordinates_for_position(position)
+    COORDINATES[position]
   end
 
-  def fill_position(position, element)
-    coordinates = coordinates_for_position(position)
-    @grid[coordinates[0]][coordinates[1]] = element
+  def element_at_coordinates(coordinates)
+    @grid[coordinates[0]][coordinates[1]]
   end
 end
