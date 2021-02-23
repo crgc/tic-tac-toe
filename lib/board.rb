@@ -29,7 +29,7 @@ class Board
       break if winning_combination
     end
 
-    winning_combination
+    winning_combination.nil? ? false : true
   end
 
   def solved?
@@ -58,6 +58,8 @@ class Board
 
     append_new_line(str_board)
   end
+
+  private
 
   def append_new_line(str)
     str << "\n"
