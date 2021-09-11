@@ -17,21 +17,19 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [About the Game](#about-the-game)
-* [About the Project](#about-the-project)
   * [Installation](#installation)
+  * [Run](#run)
   * [Instructions](#instructions)
   * [Testing](#testing)
   * [Built With](#built-with)
 * [Authors](#authors)
 
-<!-- ABOUT THE GAME -->
 ## About The Game
 
-Tic-tac-toe (American English), noughts and crosses (British English), or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
+Tic-tac-toe (US), noughts and crosses (UK), or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
 Game Rules:
 
@@ -43,69 +41,53 @@ Game Rules:
 6. The first player to complete a succession of 3 of their assigned symbol (O's or X's) in a row, column or diagonal wins!
 7. If all of the cells are filled with a symbol and no player matched 3 symbols, the game ends in a tie.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-In here you will find a Tic-Tac-Toe game. 
-
-The game has a basic interface that runs in the terminal.
-
-The goals of this project are:
-
-* Practice with OOP (Object Oriented Programming) using Ruby as the language of choice.
-* Learn how to structure a Ruby project.
-* Correct use of logic and interface files to keep code maintainable.
-* Practice of Git Flow and Github Flow creating branches for the different features.
-
-This is also part of the Odin project curriculum https://www.theodinproject.com/courses/ruby-programming/lessons/oop
-
-<!-- ABOUT THE PROJECT -->
 ## Installation
 
-You need to have Ruby installed in your computer to run this file: 
-https://www.theodinproject.com/courses/web-development-101/lessons/installing-ruby
+* Clone this repository
+```
+git clone https://github.com/crgc/tic-tac-toe.git
+```
+* Change into folder
+```
+cd tic-tac-toe
+```
 
-You can download the [repo](https://github.com/majovainilla/tic-tac-toe-game) or clone (paste on the terminal) ```git clone git@github.com:majovainilla/tic-tac-toe-game.git```
+## Run
 
-You will need to execute the main.rb file located inside the bin folder. If you are using Window, follow next step. If you are using Linux or Mac, you can follow the [instructions](https://commandercoriander.net/blog/2013/02/16/making-a-ruby-script-executable/) to make the file executable.
+* Run the following command
+```
+bin/main.rb
+```
 
-Open the terminal and navigate to the folder containing the tic-tac-toe game. Once you are inside, your terminal should look like this: ```User/<folder>/tic-tac-toe/```. You can type ```bin/main.rb``` to run the game.
-
-Enjoy!! And follow the next instructions to play.
-
-<!-- ABOUT THE PROJECT -->
 ## Instructions
 
 Once you run the game, follow the prompts and instructions inside the terminal. 
 
-1. The game is played inside the terminal.
-2. You play by typing the commands in the terminal.
-3. You will be prompted to type the Player 1 name and Player 2 name (press enter after each name)
-4. The first player will play with the 'O' symbol, and the second player with the 'X' symbol
-4. The game will prompt which player turn's it is.
-5. The board has three rows and three columns. 
-    a. Rows are named a,b,c from top to bottom.
-    b. Columns are named 1,2,3 from left to right.
-6. The player in turn should type a valid cell name and enter it to mark the board.
-7. A valid cell name is comprised by a row (letter) and column (name): 'a1', 'b3'.
-8. After each turn, you will see the updated board with the selections of the players. Example of a game board after the first player types in "a1" in their turn:
-    ```   1  2  3  
-       a [ ][O][ ] 
-       b [ ][ ][ ]
-       c [ ][ ][ ]
+1. You will be prompted to type the Player 1 name and Player 2 name (press enter after each name)
+2. The first player will pick between the 'X' and 'O' symbol
+3. The second player will play with the unpicked symbol
+4. The game will prompt which player turn's it is
+5. The player in turn should type a valid cell name (1-9) and enter it to mark the board
+6. After each turn, you will see the updated board with the selections of the players. Example of a game board after the first player types in "2" in their turn:
     ```
-9. A player can only mark an empty cell. If they choose an already marked cell they will be prompted again.
-10. The first player to match a succession of 3 of their assigned symbol (O's or X's) in a row, column or diagonal wins!
-11. If all of the cells are filled with a symbol and no player matched 3 symbols, the game ends in a tie.
-12. If you want to quit the game you can type "quit" instead of chosing a cell.
-13. After each game, you can choose to restart a new one. Type 'yes' or 'no' after the restart prompts. We will keep scores so play nice!!
+       [ ][X][ ]
+       [ ][ ][ ]
+       [ ][ ][ ]
+    ```
+7. A player can only mark an empty cell. If they choose a cell that is already marked, they will be prompted again
+8. The first player to match a succession of 3 of their assigned symbol - in row, column, or diagonal pattern - wins
+9. If all cells are marked and no player matched 3, the game ends in a tie
 
 ### Testing
 
-This project contains tests made with RSpec, testing the critical methods inside the game_logic file.
-The tests are contained within the spec folder in the game_logic_spec.rb file
-Before running the tests make sure to install [RSpec](rspec.info)
-You can run the tests by typing ```rspec``` in the terminal, inside the root directory.
+* To run the RSpec tests, run the following commands:
+
+```
+bundle install
+```
+```
+bundle exec rspec
+```
 
 ## Built With
 
