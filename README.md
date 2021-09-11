@@ -2,63 +2,92 @@
 
 <br />
 <p align="center">
-  <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe">
+  <a href="https://github.com/crgc/tic-tac-toe">
     <img src="img/screenshot.png" alt="Logo">
   </a>
 
-  <h3 align="center">Tic-Tac-Toe Game</h3>
+  <h3 align="center">Tic-Tac-Toe</h3>
 
   <p align="center">
     This project is part of the Microverse Ruby Module.
     <br />
-    <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe/issues">Report Bug</a>
+    <a href="https://github.com/crgc/tic-tac-toe/issues">Report Bug</a>
     ·
-    <a href="https://github.com/chuckbuckethead/microverse-tic-tac-toe/issues">Request Feature</a>
+    <a href="https://github.com/crgc/tic-tac-toe/issues">Request Feature</a>
   </p>
 </p>
 
-## About the game
+## Table of Contents
 
-The tic-tac-toe game is a two person game in which the players, X and O, take turns choosing available positions in a 3×3 grid.
-The player who succeeds in placing three of his marks in a diagonal, horizontal, or vertical row is the winner.
-For example:
+* [About the Game](#about-the-game)
+  * [Installation](#installation)
+  * [Run](#run)
+  * [Instructions](#instructions)
+  * [Testing](#testing)
+  * [Built With](#built-with)
+* [Authors](#authors)
 
+## About The Game
 
-| X 	|  	|  	|
-|-	|-	|-	|
-| O 	| X 	|
-| O 	|  	| X 	|
+Tic-tac-toe (US), noughts and crosses (UK), or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
-In this example, the player who marked the empty spaces with an X won the game.
+Game Rules:
 
-## How to run the game
+1. Two player game
+2. First player plays with the 'O' symbol
+3. Second player plays with the 'X' symbol
+4. Players take turns choosing a cell of the board to mark their symbol.
+5. A player can only choose an empty cell.
+6. The first player to complete a succession of 3 of their assigned symbol (O's or X's) in a row, column or diagonal wins!
+7. If all of the cells are filled with a symbol and no player matched 3 symbols, the game ends in a tie.
 
-### Prerequisites
+## Installation
 
-The game is written in Ruby, so in order to play it you should:
-1. have Ruby (v2.7.0 or newer) installed in your machine.
-1. download and uncompress the code
-1. go to the folder where you uncompressed the code and run this command: bin/main.rb (you must make sure that you have both /lib and /bin folders after uncompression)
+* Clone this repository
+```
+git clone https://github.com/crgc/tic-tac-toe.git
+```
+* Change into folder
+```
+cd tic-tac-toe
+```
 
-### With the game running:
+## Run
 
-* the first player introduces the desired nick-name (only non-empty nick-names are allwed) and immediatly is asked to choose a mark: X or O
-* the second player is asked to introduce a nick-name and will use the mark not chosen by the first player
-* every space in the board is a "position", and they are numbered this way:
+* Run the following command
+```
+bin/main.rb
+```
 
-| 1 	| 2 	| 3 	|
-|-	|-	|-	|
-| 4 	| 5 	| 6 	|
-| 7 	| 8 	| 9 	|
+## Instructions
 
-* taking this order into account, players will take turns to choose an available position in the board
-* the game can finish with a winner or in a draw
+Once you run the game, follow the prompts and instructions inside the terminal. 
 
-## How to run the test cases
+1. You will be prompted to type the Player 1 name and Player 2 name (press enter after each name)
+2. The first player will pick between the 'X' and 'O' symbol
+3. The second player will play with the unpicked symbol
+4. The game will prompt which player turn's it is
+5. The player in turn should type a valid cell name (1-9) and enter it to mark the board
+6. After each turn, you will see the updated board with the selections of the players. Example of a game board after the first player types in "2" in their turn:
+    ```
+       [ ][X][ ]
+       [ ][ ][ ]
+       [ ][ ][ ]
+    ```
+7. A player can only mark an empty cell. If they choose a cell that is already marked, they will be prompted again
+8. The first player to match a succession of 3 of their assigned symbol - in row, column, or diagonal pattern - wins
+9. If all cells are marked and no player matched 3, the game ends in a tie
 
-- Open a command line terminal on the project root folder
-- Run `bundle install` to install the gems
-- Run `bundle exec rspec` to run all the test cases
+### Testing
+
+* To run the RSpec tests, run the following commands:
+
+```
+bundle install
+```
+```
+bundle exec rspec
+```
 
 ## Built With
 
@@ -68,9 +97,9 @@ The game is written in Ruby, so in order to play it you should:
 ## Authors
 
 👤  **Carlos González**
-- GitHub: [@chuckbuckethead](https://github.com/chuckbuckethead)
+- GitHub: [@crgc](https://github.com/crgc)
 - Twitter: [@aclerkofpomier](https://twitter.com/aclerkofpomier)
-- LinkedIn: [Carlos González](https://www.linkedin.com/in/chuckbuckethead/)
+- LinkedIn: [Carlos González](https://www.linkedin.com/in/carlosrmgonzalez/)
 
 👤  **Miguel Gómez**
 - GitHub: [@MiguelArgentina](https://github.com/MiguelArgentina)
@@ -81,7 +110,7 @@ The game is written in Ruby, so in order to play it you should:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/chuckbuckethead/microverse-tic-tac-toe/issues).
+Feel free to check the [issues page](https://github.com/crgc/tic-tac-toe/issues).
 
 ## Show your support
 
