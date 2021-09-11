@@ -82,7 +82,7 @@ end
 def print_end_of_game(game)
   case game.game_state
   when GameState::WIN
-    print_line("#{game.current_player} is the winner!")
+    print_line("#{game.winner} is the winner!")
   when GameState::DRAW
     print_line("It's a draw!")
   else
